@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prueba de JavaScript JP</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
+
+  </head>
+  <body>
+    <button id="especial">botón, presiona aquí. ¿Cuanto texto soporta la alerta?</button>
+    <script>
+    	var x = document.getElementById("especial");
+    	x.addEventListener("click", function(){
+    	alert("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in sem metus. Proin semper ac risus in tristique. Phasellus molestie congue lacus quis rutrum. In consectetur venenatis odio. Quisque vulputate eu risus quis mollis. Nulla accumsan accumsan massa efficitur vehicula. Duis tincidunt leo libero, ac venenatis tortor vulputate nec. Sed in augue orci. Proin ligula lorem, varius et ex eu, egestas fringilla eros. Praesent faucibus magna tortor, sit amet condimentum tellus fringilla vel. Vestibulum eu placerat nulla. Nunc id lacus nunc. Pellentesque a elementum nunc, sed pellentesque odio. Aliquam mattis dapibus consequat. Aenean ac urna eu nulla luctus ornare. Praesent ac elementum erat. Nullam in accumsan lectus. Nunc quis sapien in mauris luctus gravida et eget lorem. Phasellus semper scelerisque massa, eu sagittis massa hendrerit non. Aliquam varius interdum eros quis vehicula. Curabitur ullamcorper rutrum placerat. Duis ultricies imperdiet rhoncus. Vivamus ultrices dictum interdum. Quisque et aliquam augue. Quisque facilisis commodo nibh, at feugiat nunc fringilla a. Etiam sem sem, ullamcorper at lectus sed, aliquet bibendum orci. Duis facilisis justo eget pellentesque scelerisque. Aenean porta, tellus ac volutpat condimentum, metus neque porta urna, dignissim fermentum lacus leo eu dui.")
+    	}, false);
+    	x.insertAdjacentHTML("beforebegin", "Hola esto es una prueba de beforebegin");
+      x.insertAdjacentHTML("afterbegin", "Esto es afterbegin...");
+      x.insertAdjacentHTML("beforeend", "...y esto es beforeend...");
+      x.insertAdjacentHTML("afterend", "...y por último esto es afterend...");
+    </script>
+
+
+<!-- Y si quisiera que me mostrara la fecha ? -->
+<h3>¿Esta es un ejemplo de mala costumbre?</h3>
+<p>Otro tipo de botón... Presiona para ver la fecha</p>
+<p id="prueba"></p>
+<button onclick="getElementById('prueba').innerHTML=Date()">Qué hora es?</button>
+<script type="text/javascript">
+prueba.insertAdjacentHTML("beforebegin", "Hola esto es una prueba de JavaScript ... probando probando");
+</script>
+
+<!-- veamos si funciona este mapa... -->
+
+<h3>aers aers... probando</h3>
+<p>este sería un mapita</p>
+
+<div id="map" style="width: 600px; height: 400px;"></div>
+<script>
+
+	var map = L.map('map').setView([-33.441, -70.648], 13);
+
+	var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox/streets-v11',
+		tileSize: 512,
+		zoomOffset: -1
+	}).addTo(map);
+
+	var marker = L.marker([-33.441, -70.648]).addTo(map)
+		.bindPopup('<b>probando probando</b><br />Esto es Santiagoooooo de Shile!').openPopup();
+
+	var circle = L.circle([-33.45, -70.64], {
+		color: 'red',
+		fillColor: '#f03',
+		fillOpacity: 0.5,
+		radius: 500
+	}).addTo(map).bindPopup('Esto sería un círculo');
+
+	var polygon = L.polygon([
+		[-33.43, -70.67],
+		[-33.44, -70.66],
+		[-33.45, -70.68]
+	]).addTo(map).bindPopup('Esto un poligono');
+
+
+	var popup = L.popup()
+		.setLatLng([-33.441, -70.648])
+		.setContent('Esto sería un Popup')
+		.openOn(map);
+
+	function onMapClick(e) {
+		popup
+			.setLatLng(e.latlng)
+			.setContent('esto pasa si haces click en el mapa :)' + e.latlng.toString())
+			.openOn(map);
+	}
+
+	map.on('aprete! aprete!', onMapClick);
+
+</script>
+
+<p>Este seria un mapa de google</p>
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d832.3601968333754!2d-70.65088425799053!3d-33.437820866553665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c5a390957307%3A0xef87ffe6bed7c7!2sPlaza%20de%20Armas!5e0!3m2!1ses-419!2scl!4v1638299523589!5m2!1ses-419!2scl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+  </body>
+</html>
